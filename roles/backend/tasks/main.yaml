@@ -51,11 +51,16 @@
     name: all
     state: import
 
+- name: Enable backend service
+  ansible.builtin.service:
+    name: backend
+    enabled: yes
+
 - name: daemon reload
   tags:
   - deployment
   ansible.builtin.systemd_service:
     daemon_reload: true
-    state: restarted
     name: backend
+    state: restarted
     enabled: true
